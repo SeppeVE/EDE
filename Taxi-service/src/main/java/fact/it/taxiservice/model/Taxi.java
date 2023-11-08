@@ -10,6 +10,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Taxi {
+//    comment
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
