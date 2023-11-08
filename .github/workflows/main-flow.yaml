@@ -3,7 +3,7 @@ name: Build and deliver containers
 on: push
 
 jobs:
-  productservice:
+  customerservice:
     runs-on: ubuntu-latest
     name: Java 17 build, test, deliver customer-service container
     steps:
@@ -29,7 +29,7 @@ jobs:
 
       - name: Upload container to Docker Hub with Push
         run: docker push ${{ secrets.DOCKER_USER }}/customer-service:latest
-  inventoryservice:
+  taxiservice:
     runs-on: ubuntu-latest
     name: Java 17 build, test, deliver taxi-service container
     steps:
@@ -55,7 +55,7 @@ jobs:
 
       - name: Upload container to Docker Hub with Push
         run: docker push ${{ secrets.DOCKER_USER }}/taxi-service:latest
-  orderservice:
+  tripservice:
     runs-on: ubuntu-latest
     name: Java 17 build, test, deliver trip-service container
     steps:
