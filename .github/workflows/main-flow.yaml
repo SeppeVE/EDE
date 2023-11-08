@@ -18,7 +18,7 @@ jobs:
           distribution: adopt
 
       - name: Build, test and package project
-        working-directory: ./customer-service
+        working-directory: customer-service
         run: mvn package -DskipTests
 
       - name: Docker login
@@ -44,7 +44,7 @@ jobs:
           distribution: adopt
 
       - name: Build, test and package project
-        working-directory: ./taxi-service
+        working-directory: taxi-service
         run: mvn package -DskipTests
 
       - name: Docker login
@@ -70,7 +70,7 @@ jobs:
           distribution: adopt
 
       - name: Build, test and package project
-        working-directory: ./trip-service
+        working-directory: trip-service
         run: mvn package -DskipTests
 
       - name: Docker login
