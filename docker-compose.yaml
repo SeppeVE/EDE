@@ -1,0 +1,74 @@
+services:
+  mongo-customers:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodb_product_data:/data/db
+
+  mysql-trip:
+    image: mysql:latest
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_order_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: trippassword
+
+  mysql-taxi:
+    image: mysql:latest
+    ports:
+      - 3307:3306
+    volumes:
+      - mysql_inventory_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: taxipassword
+
+  customer-service:
+    depends_on:
+      - mongo-products
+    image: compacte/customer-service
+    ports:
+      - 8081:8081
+    links:
+      - mongo-customers
+    environment:
+      MONGODB_PORT: 27017
+      MONGODB_HOST: mongo-customers
+
+  taxi-service:
+    depends_on:
+      - mysql-taxi
+    image: compacte/taxi-service
+    ports:
+      - 8082:8082
+    links:
+      - mysql-taxi
+    environment:
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: taxipassword
+      MYSQL_DB_HOST: mysql-taxi
+      MYSQL_DB_PORT: 3307
+
+  trip-service:
+    depends_on:
+      - taxi-service
+      - customer-service
+    image: compacte/trip-service
+    ports:
+      - 8083:8083
+    links:
+      - taxi-service
+      - customer-service
+    environment:
+      PRODUCT_SERVICE_BASEURL: customer-service:8081
+      INVENTORY_INFO_SERVICE_BASEURL: taxi-service:8082
+      MYSQL_DB_USERNAME: root
+      MYSQL_DB_PASSWORD: trippassword
+      MYSQL_DB_HOST: mysql-trip
+      MYSQL_DB_PORT: 3306
+
+volumes:
+  mongodb_customer_data:
+  mysql_taxi_data:
+  mysql_trip_data:

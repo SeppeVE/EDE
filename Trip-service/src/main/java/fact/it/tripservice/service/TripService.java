@@ -5,6 +5,7 @@ import fact.it.tripservice.model.Trip;
 import fact.it.tripservice.repository.TripRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -21,6 +22,12 @@ import java.util.stream.Collectors;
 public class TripService {
     private final TripRepository tripRepository;
     private final WebClient webClient;
+
+    @Value("${taxiservice.baseurl}")
+    private String taxiServiceBaseUrl;
+
+    @Value("${customerservice.baseurl}")
+    private String customerServiceBaseUrl;
 
 
     public List<TripResponse> getAllTrips(){
@@ -61,7 +68,7 @@ public class TripService {
         String licencePlate = tripRequest.getLicencePlate();
 
         TaxiResponse[] taxiAr = webClient.get()
-                .uri("http://localhost:8082/api/taxi", uriBuilder -> uriBuilder.queryParam("licencePlate", licencePlate)
+                .uri("http://" + taxiServiceBaseUrl +"/api/taxi", uriBuilder -> uriBuilder.queryParam("licencePlate", licencePlate)
                         .build())
                 .retrieve()
                 .bodyToMono(TaxiResponse[].class)
@@ -70,7 +77,7 @@ public class TripService {
         String customerNr = tripRequest.getCustomerNr();
 
         CustomerResponse[] customerAr = webClient.get()
-                .uri("http://localhost:8081/api/customer", uriBuilder -> uriBuilder.queryParam("customerNr", customerNr)
+                .uri("http://"+ customerServiceBaseUrl +"/api/customer", uriBuilder -> uriBuilder.queryParam("customerNr", customerNr)
                         .build())
                 .retrieve()
                 .bodyToMono(CustomerResponse[].class)
