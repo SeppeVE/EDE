@@ -4,7 +4,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - mongodb_customers_data:/data/db
+      - mongodb_customer_data:/data/db
 
   mysql-trip:
     image: mysql:latest
