@@ -67,6 +67,20 @@ services:
       MYSQL_DB_PASSWORD: trippassword
       MYSQL_DB_HOST: mysql-trip
       MYSQL_DB_PORT: 3306
+    
+   api-gateway:
+     depends_on:
+       - product-service
+       - order-service
+     image: compacte/ede-project-api-gateway
+     ports:
+       - 8083:8083
+     links:
+       - taxi-service
+       - trip-service
+     environment:
+       PRODUCT_SERVICE_BASEURL: taxi-service:8081
+       ORDER_SERVICE_BASEURL: trip-service:8082
 
 volumes:
   mongodb_customer_data:
