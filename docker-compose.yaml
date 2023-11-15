@@ -74,7 +74,7 @@ services:
       - trip-service
     image: compacte/ede-project-api-gateway
     ports:
-      - 8083:8083
+      - 8084:8084
     links:
       - taxi-service
       - trip-service

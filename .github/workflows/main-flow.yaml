@@ -81,7 +81,7 @@ jobs:
 
       - name: Upload container to Docker Hub with Push
         run: docker push ${{ secrets.DOCKER_USER }}/trip-service:latest
-    apigateway:
+  apigateway:
     runs-on: ubuntu-latest
     name: Java 17 build, test, deliver ede-api-gateway container
     steps:
