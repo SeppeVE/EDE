@@ -61,8 +61,8 @@ services:
       - taxi-service
       - customer-service
     environment:
-      PRODUCT_SERVICE_BASEURL: customer-service:8081
-      INVENTORY_INFO_SERVICE_BASEURL: taxi-service:8082
+      CUSTOMER_SERVICE_BASEURL: customer-service:8081
+      TAXI_INFO_SERVICE_BASEURL: taxi-service:8082
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: trippassword
       MYSQL_DB_HOST: mysql-trip
@@ -79,8 +79,8 @@ services:
        - taxi-service
        - trip-service
      environment:
-       PRODUCT_SERVICE_BASEURL: taxi-service:8081
-       ORDER_SERVICE_BASEURL: trip-service:8082
+       TAXI_SERVICE_BASEURL: taxi-service:8081
+       TRIP_SERVICE_BASEURL: trip-service:8082
 
 volumes:
   mongodb_customer_data:
