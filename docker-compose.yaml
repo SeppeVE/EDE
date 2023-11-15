@@ -79,8 +79,8 @@ services:
       - taxi-service
       - trip-service
     environment:
-      TAXI_SERVICE_BASEURL: taxi-service:8081
-      TRIP_SERVICE_BASEURL: trip-service:8082
+      TAXI_SERVICE_BASEURL: taxi-service:8082
+      TRIP_SERVICE_BASEURL: trip-service:8083
 
 volumes:
   mongodb_customer_data:
