@@ -26,7 +26,7 @@ services:
 
   customer-service:
     depends_on:
-      - mongo-products
+      - mongo-customer
     image: compacte/customer-service
     ports:
       - 8081:8081
