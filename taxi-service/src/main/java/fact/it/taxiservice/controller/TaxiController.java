@@ -26,7 +26,7 @@ public class TaxiController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<TaxiResponse> getAllTaxisByBrand
-            (@RequestBody String brand){
+            (@RequestParam String brand){
         return taxiService.getAllTaxisByBrand(brand);
     }
 

@@ -25,7 +25,7 @@ spring:
             - Path=/taxis
             - Method=GET
           filters:
-            - SetPath=/taxis/product/all
+            - SetPath=/taxis/all
         - id: trip-service
           uri: http://${TRIP_SERVICE_BASEURL:localhost:8082}
           predicates:
