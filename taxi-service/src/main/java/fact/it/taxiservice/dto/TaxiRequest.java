@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TaxiResponse {
-    private Long id;
+public class TaxiRequest {
     private String licencePlate;
     private String brand;
     private boolean isAvailable;

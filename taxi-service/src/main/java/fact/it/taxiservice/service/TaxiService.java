@@ -1,5 +1,6 @@
 package fact.it.taxiservice.service;
 
+import fact.it.taxiservice.dto.TaxiRequest;
 import fact.it.taxiservice.dto.TaxiResponse;
 import fact.it.taxiservice.model.Taxi;
 import fact.it.taxiservice.repository.TaxiRepository;
@@ -34,6 +35,18 @@ public class TaxiService {
         }
     }
 
+    public void createTaxi(TaxiRequest taxiRequest){
+        Taxi taxi = Taxi.builder()
+                .brand(taxiRequest.getBrand())
+                .licencePlate(taxiRequest.getLicencePlate())
+                .pricePerKm(taxiRequest.getPricePerKm())
+                .isAvailable(taxiRequest.isAvailable())
+                .build();
+
+        taxiRepository.save(taxi);
+    }
+
+
     @Transactional(readOnly = true)
     public List<TaxiResponse> isAvailable(List<String> licencePlate){
         return taxiRepository.findByLicencePlate(licencePlate.toString()).stream()
@@ -41,5 +54,27 @@ public class TaxiService {
                         .licencePlate(taxi.getLicencePlate())
                         .isAvailable(taxi.isAvailable())
                         .build()).toList();
+    }
+
+
+    public List<TaxiResponse> getAllTaxis(){
+        List<Taxi> taxis = taxiRepository.findAll();
+        return taxis.stream().map(this::mapToTaxiResponse).toList();
+    }
+
+    private List<TaxiResponse> getAllTaxisByBrand(String brand){
+        List<Taxi> taxis = taxiRepository.findAllByBrand(brand);
+        return taxis.stream().map(this::mapToTaxiResponse).toList();
+    }
+
+
+    private TaxiResponse mapToTaxiResponse(Taxi taxi){
+        return TaxiResponse.builder()
+                .id(taxi.getId())
+                .brand(taxi.getBrand())
+                .licencePlate(taxi.getLicencePlate())
+                .pricePerKm(taxi.getPricePerKm())
+                .isAvailable(taxi.isAvailable())
+                .build();
     }
 }
