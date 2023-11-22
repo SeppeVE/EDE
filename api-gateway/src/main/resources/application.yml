@@ -15,7 +15,7 @@ spring:
         - id: taxi-service
           uri: http://${TAXI_SERVICE_BASEURL:localhost:8082}
           predicates:
-            - Path=/taxis
+            - Path=/taxi
           filters:
             - SetPath=/api/taxi
         - id: trip-service
