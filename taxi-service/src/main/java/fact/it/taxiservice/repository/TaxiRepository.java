@@ -11,4 +11,5 @@ import java.util.List;
 @Transactional
 public interface TaxiRepository extends JpaRepository<Taxi, Long> {
     List<Taxi> findByLicencePlate(String licencePlate);
+    List<Taxi> findAllByBrand(String brand);
 }
