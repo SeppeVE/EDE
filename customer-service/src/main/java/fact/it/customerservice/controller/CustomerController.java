@@ -23,7 +23,7 @@ public class CustomerController {
         customerService.createCustomer(customerRequest);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<CustomerResponse> getAllCustomers(){
         return customerService.getAllCustomers();
