@@ -62,7 +62,7 @@ services:
       - customer-service
     environment:
       CUSTOMER_SERVICE_BASEURL: customer-service:8081
-      TAXI_INFO_SERVICE_BASEURL: taxi-service:8082
+      TAXI_SERVICE_BASEURL: taxi-service:8082
       MYSQL_DB_USERNAME: root
       MYSQL_DB_PASSWORD: trippassword
       MYSQL_DB_HOST: mysql-trip
