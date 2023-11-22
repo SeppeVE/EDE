@@ -12,14 +12,14 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: taxi-service
+        - id: taxi-service-post
           uri: http://${TAXI_SERVICE_BASEURL:localhost:8082}
           predicates:
             - Path=/taxi
             - Method=POST
           filters:
             - SetPath=/api/taxi
-        - id: taxi-service-all
+        - id: taxi-service
           uri: http://${TAXI_SERVICE_BASEURL:localhost:8082}
           predicates:
             - Path=/taxi
