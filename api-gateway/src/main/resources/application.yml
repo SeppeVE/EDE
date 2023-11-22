@@ -18,14 +18,14 @@ spring:
             - Path=/taxi
             - Method=POST
           filters:
-            - SetPath=/api/taxi
+            - SetPath=/api/taxi/create
         - id: taxi-service
           uri: http://${TAXI_SERVICE_BASEURL:localhost:8082}
           predicates:
             - Path=/taxi
             - Method=GET
           filters:
-            - SetPath=/api/taxi/all
+            - SetPath=/api/taxi
         - id: trip-service
           uri: http://${TRIP_SERVICE_BASEURL:localhost:8082}
           predicates:
