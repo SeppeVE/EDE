@@ -23,14 +23,14 @@ public class TaxiController {
         taxiService.createTaxi(taxiRequest);
     }
 
-    @GetMapping
+    @GetMapping("/brand")
     @ResponseStatus(HttpStatus.OK)
     public List<TaxiResponse> getAllTaxisByBrand
             (@RequestParam String brand){
         return taxiService.getAllTaxisByBrand(brand);
     }
 
-    @GetMapping("/all")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<TaxiResponse> getAllTaxis(){
         return taxiService.getAllTaxis();
