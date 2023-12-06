@@ -9,6 +9,18 @@ logging:
     reactor.netty: TRACE
 
 spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${{secrets.OAUTH_ID}}
+            client-secret: ${{secrets.OAUTH_SECRET}}
+            scope: openid,profile,email
+      resourceserver:
+        jwt:
+          issuer-uri: https://accounts.google.com
+          jwt-set-uri: https://www.googleapis.com/oath2/v3/certs
   cloud:
     gateway:
       routes:
