@@ -5,7 +5,6 @@ import fact.it.customerservice.dto.CustomerResponse;
 import fact.it.customerservice.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
