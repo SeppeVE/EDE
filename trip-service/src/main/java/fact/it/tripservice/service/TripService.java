@@ -1,6 +1,9 @@
 package fact.it.tripservice.service;
 
-import fact.it.tripservice.dto.*;
+import fact.it.tripservice.dto.CustomerResponse;
+import fact.it.tripservice.dto.TaxiResponse;
+import fact.it.tripservice.dto.TripRequest;
+import fact.it.tripservice.dto.TripResponse;
 import fact.it.tripservice.model.Trip;
 import fact.it.tripservice.repository.TripRepository;
 import jakarta.annotation.PostConstruct;
@@ -14,7 +17,6 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -86,13 +88,9 @@ public class TripService {
         boolean isAvailable = Arrays.stream(taxiAr).allMatch(TaxiResponse::isAvailable);
 
         if (isAvailable){
-            TaxiResponse taxi = Arrays.stream(taxiAr)
+            Arrays.stream(taxiAr)
                     .filter(e -> e.getLicencePlate().equals(tripRequest.getLicencePlate()))
-                    .findFirst()
-                    .orElse(null);
-            if (taxi != null) {
-                trip.setPricePerKm(taxi.getPricePerKm());
-            }
+                    .findFirst().ifPresent(taxi -> trip.setPricePerKm(taxi.getPricePerKm()));
             CustomerResponse customer = Arrays.stream(customerAr)
                     .filter(s -> s.getCustomerNr().equals(tripRequest.getCustomerNr()))
                     .findFirst()
