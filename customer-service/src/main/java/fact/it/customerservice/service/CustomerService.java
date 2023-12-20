@@ -47,28 +47,19 @@ public class CustomerService {
         customerRepository.save(customer);
     }
 
-    public void updateCustomer(String id, CustomerRequest customerRequest) {
-        Optional<Customer> existingCustomers = customerRepository.findById(id);
+    public void updateCustomer (String id,CustomerRequest customerRequest){
+        Optional<Customer> customerEdit = customerRepository.findById(id);
+        if(customerEdit.isPresent()){
+            Customer customer = customerEdit.get();
+            customer.setFirstName(customerRequest.getFirstName());
+            customer.setLastName(customerRequest.getLastName());
+            customer.setEmail(customerRequest.getLastName());
+            customer.setCustomerNr(customerRequest.getLastName());
+            customerRepository.save(customer);
 
-        if (existingCustomers.isPresent()) {
-
-            Customer existingCustomer = existingCustomers.get();
-
-            existingCustomer.setFirstName(customerRequest.getFirstName());
-            existingCustomer.setLastName(customerRequest.getLastName());
-            existingCustomer.setEmail(customerRequest.getEmail());
-
-            customerRepository.save(existingCustomer);
         }
     }
 
-
-
-    public List<CustomerResponse> getAllCustomersByCustomerNr(List<String> customerNr){
-        List<Customer> customers = customerRepository.findByCustomerNr(customerNr.toString());
-
-        return customers.stream().map(this::mapToCustomerResponse).toList();
-    }
 
     private CustomerResponse mapToCustomerResponse(Customer customer){
         return CustomerResponse.builder()

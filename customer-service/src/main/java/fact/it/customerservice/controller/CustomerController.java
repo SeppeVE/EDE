@@ -22,18 +22,18 @@ public class CustomerController {
         customerService.createCustomer(customerRequest);
     }
 
-    @PutMapping
-    @ResponseStatus(HttpStatus.OK)
-    public void updateCustomer
-            (@RequestBody CustomerRequest customerRequest){
-        customerService.updateCustomer("id", customerRequest);
-    }
-
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<CustomerResponse> getAllCustomers(){
         return customerService.getAllCustomers();
+    }
+
+
+    @PutMapping("/id/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void updateCustomer(@PathVariable String id,@RequestBody CustomerRequest customerRequest)
+    {
+        customerService.updateCustomer(id, customerRequest);
     }
 
 }
