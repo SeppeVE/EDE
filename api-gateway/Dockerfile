@@ -1,4 +1,8 @@
 FROM openjdk:17-jdk-alpine
 EXPOSE 8084
+ARG OAUTH_ID
+ARG OAUTH_SECRET
+ARG OAUTH_ID=$OAUTH_ID
+ARG OAUTH_SECRET=$OAUTH_SECRET
 ADD target/*.jar app.jar
 ENTRYPOINT ["java","-jar","/app.jar"]
