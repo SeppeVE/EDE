@@ -47,8 +47,8 @@ public class CustomerService {
         customerRepository.save(customer);
     }
 
-    public void updateCustomer (String id,CustomerRequest customerRequest){
-        Optional<Customer> customerEdit = customerRepository.findById(id);
+    public void updateCustomer (String nr,CustomerRequest customerRequest){
+        Optional<Customer> customerEdit = customerRepository.getByCustomerNr(nr);
         if(customerEdit.isPresent()){
             Customer customer = customerEdit.get();
             customer.setFirstName(customerRequest.getFirstName());
