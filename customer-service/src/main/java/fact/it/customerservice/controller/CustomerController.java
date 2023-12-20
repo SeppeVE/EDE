@@ -31,9 +31,9 @@ public class CustomerController {
 
     @PutMapping("/id/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void updateUser(@PathVariable String id,@RequestBody CustomerRequest customerRequest)
+    public void updateCustomer(@PathVariable String id,@RequestBody CustomerRequest customerRequest)
     {
-        customerService.updateCustomer(id, customerService);
+        customerService.updateCustomer(id, customerRequest);
     }
 
 }
