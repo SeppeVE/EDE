@@ -44,7 +44,7 @@ spring:
             - Path=/customers
             - Method=PUT
           filters:
-            - SetPath=/api/customer/id/{id}
+            - SetPath=/api/customer/{id}
         - id: taxi-service
           uri: http://${TAXI_SERVICE_BASEURL:localhost:8082}
           predicates:
