@@ -29,11 +29,11 @@ public class CustomerController {
     }
 
 
-    @PutMapping("/id/{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void updateCustomer(@PathVariable String id,@RequestBody CustomerRequest customerRequest)
+    public void updateCustomer(@PathVariable("id") String customerId,@RequestBody CustomerRequest customerRequest)
     {
-        customerService.updateCustomer(id, customerRequest);
+        customerService.updateCustomer(customerId, customerRequest);
     }
 
 }
