@@ -24,11 +24,18 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: customer-service
+        - id: customer-service-get
           uri: http://${CUSTOMER_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Path=/customers
             - Method=GET
+          filters:
+            - SetPath=/api/customer
+        - id: customer-service-post
+          uri: http://${CUSTOMER_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Path=/customers
+            - Method=POST
           filters:
             - SetPath=/api/customer
         - id: taxi-service
