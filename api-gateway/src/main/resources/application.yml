@@ -28,17 +28,20 @@ spring:
           uri: http://${CUSTOMER_SERVICE_BASEURL:localhost:8081}
           predicates:
             - Path=/customers
+            - Method=GET
           filters:
             - SetPath=/api/customer
         - id: taxi-service
           uri: http://${TAXI_SERVICE_BASEURL:localhost:8082}
           predicates:
             - Path=/taxi
+            - Method=GET
           filters:
             - SetPath=/api/taxi
         - id: trip-service
           uri: http://${TRIP_SERVICE_BASEURL:localhost:8083}
           predicates:
             - Path=/trips
+            - Method=GET
           filters:
             - SetPath=/api/trip

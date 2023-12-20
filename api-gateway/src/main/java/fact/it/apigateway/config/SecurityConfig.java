@@ -11,4 +11,13 @@ import static org.springframework.security.config.Customizer.withDefaults;
 @Configuration
 @EnableWebFluxSecurity
 public class SecurityConfig {
+    @Bean
+    public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity serverHttpSecurity){
+        serverHttpSecurity.authorizeExchange(exchange->
+                exchange.pathMatchers(HttpMethod.GET,"/customers")
+                        .permitAll().anyExchange().authenticated()
+        ).oauth2ResourceServer(oauth2->oauth2.jwt(withDefaults()));
+        return serverHttpSecurity.build();
+    }
 }
+
