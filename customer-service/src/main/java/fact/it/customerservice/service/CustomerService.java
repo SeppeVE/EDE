@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +28,7 @@ public class CustomerService {
             Customer customer2 = new Customer();
             customer2.setCustomerNr("1");
             customer2.setFirstName("Balthasar");
-            customer2.setLastName("boma");
+            customer2.setLastName("Boma");
             customer2.setEmail("pdg@bomavleesindustrienv.be");
 
             customerRepository.save(customer1);
@@ -45,6 +46,23 @@ public class CustomerService {
                 .build();
         customerRepository.save(customer);
     }
+
+    public void updateCustomer(String id, CustomerRequest customerRequest) {
+        Optional<Customer> existingCustomers = customerRepository.findById(id);
+
+        if (existingCustomers.isPresent()) {
+
+            Customer existingCustomer = existingCustomers.get();
+
+            existingCustomer.setFirstName(customerRequest.getFirstName());
+            existingCustomer.setLastName(customerRequest.getLastName());
+            existingCustomer.setEmail(customerRequest.getEmail());
+
+            customerRepository.save(existingCustomer);
+        }
+    }
+
+
 
     public List<CustomerResponse> getAllCustomersByCustomerNr(List<String> customerNr){
         List<Customer> customers = customerRepository.findByCustomerNr(customerNr.toString());
