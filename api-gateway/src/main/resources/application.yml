@@ -16,11 +16,14 @@ spring:
           google:
             client-id: '1018395572599-t31o42m7rqm17so7oq30fd1jev6vmknv.apps.googleusercontent.com'
             client-secret: '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'
-            scope: openid,profile,email
+            scope:
+              - openid
+              - profile
+              - email
       resourceserver:
         jwt:
-          issuer-uri: 'https://accounts.google.com'
-          jwk-set-uri: 'https://www.googleapis.com/oath2/v3/certs'
+          issuer-uri: https://accounts.google.com
+          jwk-set-uri: https://www.googleapis.com/oauth2/v3/certs
   cloud:
     gateway:
       routes:
