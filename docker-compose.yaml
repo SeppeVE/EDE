@@ -72,13 +72,16 @@ services:
     depends_on:
       - taxi-service
       - trip-service
+      - customer-service
     image: compacte/ede-project-api-gateway
     ports:
       - 8084:8084
     links:
       - taxi-service
+      - customer-service
       - trip-service
     environment:
+      CUSTOMER_SERVICE_BASEURL: customer-service:8081
       TAXI_SERVICE_BASEURL: taxi-service:8082
       TRIP_SERVICE_BASEURL: trip-service:8083
 
