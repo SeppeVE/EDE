@@ -67,7 +67,6 @@ public class TaxiService {
         return taxis.stream().map(this::mapToTaxiResponse).toList();
     }
 
-
     private TaxiResponse mapToTaxiResponse(Taxi taxi){
         return TaxiResponse.builder()
                 .id(taxi.getId())
