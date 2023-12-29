@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -44,6 +45,21 @@ public class TaxiService {
                 .build();
 
         taxiRepository.save(taxi);
+    }
+
+    public void updateTaxi(Long taxiId, TaxiRequest updatedTaxiRequest) {
+        Optional<Taxi> optionalTaxi = taxiRepository.findById(taxiId);
+
+        if (optionalTaxi.isPresent()) {
+            Taxi existingTaxi = optionalTaxi.get();
+            existingTaxi.setBrand(updatedTaxiRequest.getBrand());
+            existingTaxi.setLicencePlate(updatedTaxiRequest.getLicencePlate());
+            existingTaxi.setPricePerKm(updatedTaxiRequest.getPricePerKm());
+            existingTaxi.setAvailable(updatedTaxiRequest.isAvailable());
+            taxiRepository.save(existingTaxi);
+        } else {
+            throw new IllegalArgumentException("Taxi with ID " + taxiId + " not found");
+        }
     }
 
 
