@@ -18,19 +18,19 @@ public class TaxiService {
     @PostConstruct
     public void loadData(){
         if (taxiRepository.count() == 0){
-            Taxi taxi = new Taxi();
-            taxi.setLicencePlate("1-abc-123");
-            taxi.setBrand("Toyota");
-            taxi.setAvailable(false);
-            taxi.setPricePerKm(2.00);
+            Taxi taxi1 = new Taxi();
+            taxi1.setLicencePlate("1-abc-123");
+            taxi1.setBrand("Toyota");
+            taxi1.setAvailable(false);
+            taxi1.setPricePerKm(2.00);
 
             Taxi taxi2 = new Taxi();
-            taxi.setLicencePlate("1-jvy-048");
-            taxi.setBrand("Mazda");
-            taxi.setAvailable(true);
-            taxi.setPricePerKm(4.00);
+            taxi2.setLicencePlate("1-jvy-048");
+            taxi2.setBrand("Mazda");
+            taxi2.setAvailable(true);
+            taxi2.setPricePerKm(4.00);
 
-            taxiRepository.save(taxi);
+            taxiRepository.save(taxi1);
             taxiRepository.save(taxi2);
         }
     }
