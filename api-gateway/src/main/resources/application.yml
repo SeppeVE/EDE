@@ -4,9 +4,10 @@ server:
 logging:
   level:
     root: INFO
-    org.springframework.cloud.gateway: TRACE
+    org.springframework.cloud.gateway: INFO
     org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator: INFO
-    reactor.netty: TRACE
+    reactor.netty: INFO
+    org.springframework.security: TRACE
 
 spring:
   security:
@@ -16,10 +17,7 @@ spring:
           google:
             client-id: ${OAUTH_ID}
             client-secret: ${OAUTH_SECRET}
-            scope:
-              - openid
-              - profile
-              - email
+            scope: openid,profile,email
       resourceserver:
         jwt:
           issuer-uri: https://accounts.google.com
@@ -48,13 +46,27 @@ spring:
             - Method=PUT
           filters:
             - SetPath=/api/customer/{id}
-        - id: taxi-service
+        - id: taxi-service-get
           uri: http://${TAXI_SERVICE_BASEURL:localhost:8082}
           predicates:
             - Path=/taxi
             - Method=GET
           filters:
             - SetPath=/api/taxi
+        - id: taxi-service-post
+          uri: http://${TAXI_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/taxi/post
+            - Method=POST
+          filters:
+            - SetPath=/api/taxi
+        - id: taxi-service-put
+          uri: http://${TAXI_SERVICE_BASEURL:localhost:8082}
+          predicates:
+            - Path=/taxi/{licencePlate}
+            - Method=PUT
+          filters:
+            - SetPath=/api/taxi/{licencePlate}
         - id: trip-service
           uri: http://${TRIP_SERVICE_BASEURL:localhost:8083}
           predicates:
