@@ -53,11 +53,16 @@ public class CustomerService {
             Customer customer = customerEdit.get();
             customer.setFirstName(customerRequest.getFirstName());
             customer.setLastName(customerRequest.getLastName());
-            customer.setEmail(customerRequest.getLastName());
-            customer.setCustomerNr(customerRequest.getLastName());
+            customer.setEmail(customerRequest.getEmail());
+            customer.setCustomerNr(customerRequest.getCustomerNr());
             customerRepository.save(customer);
 
         }
+    }
+
+    public void deleteCustomer(String id) {
+        Optional<Customer> customerToDelete = customerRepository.findById(id);
+        customerToDelete.ifPresent(customerRepository::delete);
     }
 
 
@@ -75,4 +80,6 @@ public class CustomerService {
         List<Customer> customers = customerRepository.findAll();
         return customers.stream().map(this::mapToCustomerResponse).toList();
     }
+
+
 }
