@@ -17,8 +17,7 @@ public class CustomerController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public void createCustomer
-            (@RequestBody CustomerRequest customerRequest){
+    public void createCustomer(@RequestBody CustomerRequest customerRequest){
         customerService.createCustomer(customerRequest);
     }
 
@@ -31,9 +30,14 @@ public class CustomerController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void updateCustomer(@PathVariable("id") String customerId,@RequestBody CustomerRequest customerRequest)
-    {
+    public void updateCustomer(@PathVariable("id") String customerId, @RequestBody CustomerRequest customerRequest) {
         customerService.updateCustomer(customerId, customerRequest);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteCustomer(@PathVariable("id") String customerId) {
+        customerService.deleteCustomer(customerId);
     }
 
 }
