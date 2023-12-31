@@ -1,3 +1,2 @@
-# EDE
-Project Enterprise Development Experience
+# Taxi Project
 
