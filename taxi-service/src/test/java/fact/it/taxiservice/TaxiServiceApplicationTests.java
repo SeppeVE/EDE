@@ -87,11 +87,11 @@ class TaxiServiceApplicationTests {
 
     @Test
     void isAvailableTest() {
-        List<String> licencePlates = Arrays.asList("1-abc-123", "1-jvy-048");
+        List<String> licencePlates = Arrays.asList("1-abc-123", "1-xyz-048");
 
         when(taxiRepository.findByLicencePlate(any())).thenReturn(Arrays.asList(
                 Taxi.builder().brand("Toyota").licencePlate("1-abc-123").pricePerKm(2.00).isAvailable(false).build(),
-                Taxi.builder().brand("Mazda").licencePlate("1-jvy-048").pricePerKm(4.00).isAvailable(true).build()
+                Taxi.builder().brand("Mazda").licencePlate("1-xyz-048").pricePerKm(4.00).isAvailable(true).build()
         ));
 
         List<TaxiResponse> taxiResponses = taxiService.isAvailable(licencePlates);
@@ -105,7 +105,7 @@ class TaxiServiceApplicationTests {
     void getAllTaxisTest() {
         when(taxiRepository.findAll()).thenReturn(Arrays.asList(
                 Taxi.builder().brand("Toyota").licencePlate("1-abc-123").pricePerKm(2.00).isAvailable(false).build(),
-                Taxi.builder().brand("Mazda").licencePlate("1-jvy-048").pricePerKm(4.00).isAvailable(true).build()
+                Taxi.builder().brand("Mazda").licencePlate("1-xyz-048").pricePerKm(4.00).isAvailable(true).build()
         ));
 
         List<TaxiResponse> taxiResponses = taxiService.getAllTaxis();
