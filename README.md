@@ -8,3 +8,10 @@ Here is a little more information about the microservices, but they will be expl
 * Taxi-Service: Manage all information regarding the taxis (cars) that the company has.
 * Trip-Service: Combine customer and taxi values to create a trip alongside extra trip information.
 * API-Gateway: A service used to brigde between user and the program, allows easy access to a single main url.
+
+## Project schema in Draw.io
+
+This is the schema of the project structure. The first thing the user will come in contact with is the API-Gateway, this is to access all available endpoint. Most endpoints are secured using the Google cloud Platform with OAuth 2.0. 
+The gateway can then call the necessary services to show or process the requested data. Each service has a volume for data storage attached. Trip and Taxi use MySQL and Customer is using MongoDB.
+
+![EDE](https://github.com/SeppeVE/EDE/assets/91118345/a50a6e84-1573-48bb-90e3-f7fade2edb0a)
