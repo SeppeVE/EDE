@@ -26,7 +26,7 @@ public class TaxiService {
             taxi1.setPricePerKm(2.00);
 
             Taxi taxi2 = new Taxi();
-            taxi2.setLicencePlate("1-jvy-048");
+            taxi2.setLicencePlate("1-xyz-048");
             taxi2.setBrand("Mazda");
             taxi2.setAvailable(true);
             taxi2.setPricePerKm(4.00);
