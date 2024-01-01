@@ -60,13 +60,6 @@ spring:
             - Method=POST
           filters:
             - SetPath=/api/taxi
-        - id: taxi-service-put
-          uri: http://${TAXI_SERVICE_BASEURL:localhost:8082}
-          predicates:
-            - Path=/taxi/**
-            - Method=PUT
-          filters:
-            - SetPath=/api/taxi/{licencePlate}
         - id: trip-service
           uri: http://${TRIP_SERVICE_BASEURL:localhost:8083}
           predicates:
