@@ -15,3 +15,19 @@ This is the schema of the project structure. The first thing the user will come 
 The gateway can then call the necessary services to show or process the requested data. Each service has a volume for data storage attached. Trip and Taxi use MySQL and Customer is using MongoDB.
 
 ![EDE](https://github.com/SeppeVE/EDE/assets/91118345/a50a6e84-1573-48bb-90e3-f7fade2edb0a)
+
+## Endpoints
+
+In order to use the services online, i have hosted them using Okteto. The endpoints that are accesible are:
+* GET customers
+* POST customer
+* PUT customer
+* DELETE customer
+* GET taxis
+* POST taxi
+* GET trips
+
+Out of all these endpoints, the only one accesible withouth authorization is GET customers.
+
+## Endpoints showcase
+
