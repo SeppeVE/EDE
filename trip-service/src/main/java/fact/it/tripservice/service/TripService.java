@@ -49,10 +49,10 @@ public class TripService {
         if (tripRepository.count() <= 0) {
             Trip trip = new Trip();
             trip.setTripNr("1234");
-            trip.setCustomerNr("420");
-            trip.setLastNameCustomer("Doe");
-            trip.setFirstNameCustomer("John");
-            trip.setLicencePlate("1-JVY-048");
+            trip.setCustomerNr("144");
+            trip.setLastNameCustomer("Vermeulen");
+            trip.setFirstNameCustomer("Joske");
+            trip.setLicencePlate("1-abc-048");
             trip.setPricePerKm(5);
             trip.setLengthInKm(5);
             trip.setPrice(BigDecimal.valueOf(25));
