@@ -31,3 +31,29 @@ Out of all these endpoints, the only one accesible withouth authorization is GET
 
 ## Endpoints showcase
 
+### Get Customers
+![Get_customers](https://github.com/SeppeVE/EDE/assets/91118345/acd7f1b5-6262-4bfc-b73e-226f8ab7d2a2)
+
+### Post Customer
+![Post_customer_1](https://github.com/SeppeVE/EDE/assets/91118345/f330c4ad-596e-45c0-88f5-3ab024bd4790)
+![Post_customer_2](https://github.com/SeppeVE/EDE/assets/91118345/57de8aed-6fda-429b-ac18-4314a53e1a8b)
+
+### Get Taxis
+![Get_Taxis](https://github.com/SeppeVE/EDE/assets/91118345/544ea6b1-26dc-4a7b-96e8-d3b5a16a40bf)
+
+### Post Taxi
+![Post_taxi_1](https://github.com/SeppeVE/EDE/assets/91118345/571ef248-19a1-4eb1-b449-b3034fb88507)
+![Post_taxi_2](https://github.com/SeppeVE/EDE/assets/91118345/9bd3283f-b213-41cc-aaca-688817d3be31)
+
+### Get Trips
+![Get_Trips](https://github.com/SeppeVE/EDE/assets/91118345/1861b25f-dc63-48eb-91ce-f2bdd05b24be)
+
+## Hosting
+
+In order to access all of this over the internet it has to be hosted of course. I have done this using Okteto. This way my Github repo gets published automatically and quite easy as well. To achieve this, the services are made into Docker images and containers which are then managed by Okteto.  
+
+* [Get Customers (only one without auth)](https://api-gateway-seppeve.cloud.okteto.net/customers)
+* [Post Customer](https://api-gateway-seppeve.cloud.okteto.net/customer/post)
+* [Get Taxis](https://api-gateway-seppeve.cloud.okteto.net/taxis)
+* [Post Taxi](https://api-gateway-seppeve.cloud.okteto.net/taxi/post)
+* [Get Trips](https://api-gateway-seppeve.cloud.okteto.net/trips)
