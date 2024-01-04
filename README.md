@@ -58,6 +58,7 @@ In order to access all of this over the internet it has to be hosted of course. 
 
 * [Get Customers (only one without auth)](https://api-gateway-seppeve.cloud.okteto.net/customers)
 * [Post Customer](https://api-gateway-seppeve.cloud.okteto.net/customer/post)
+* [Put Customer](https://api-gateway-seppeve.cloud.okteto.net/cutomer/put/id)
 * [Get Taxis](https://api-gateway-seppeve.cloud.okteto.net/taxis)
 * [Post Taxi](https://api-gateway-seppeve.cloud.okteto.net/taxi/post)
 * [Get Trips](https://api-gateway-seppeve.cloud.okteto.net/trips)
