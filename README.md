@@ -38,6 +38,10 @@ Out of all these endpoints, the only one accesible withouth authorization is GET
 ![Post_customer_1](https://github.com/SeppeVE/EDE/assets/91118345/f330c4ad-596e-45c0-88f5-3ab024bd4790)
 ![Post_customer_2](https://github.com/SeppeVE/EDE/assets/91118345/57de8aed-6fda-429b-ac18-4314a53e1a8b)
 
+### Put Customer
+![Put_customer_1](https://github.com/SeppeVE/EDE/assets/91118345/1e786298-8fe5-4104-9535-6c0d60754797)
+![Put_customer_2](https://github.com/SeppeVE/EDE/assets/91118345/1af572e5-c81f-40cc-b401-92f68d67f008)
+
 ### Get Taxis
 ![Get_Taxis](https://github.com/SeppeVE/EDE/assets/91118345/544ea6b1-26dc-4a7b-96e8-d3b5a16a40bf)
 
