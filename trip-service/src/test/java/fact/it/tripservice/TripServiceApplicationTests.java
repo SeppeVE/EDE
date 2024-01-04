@@ -20,16 +20,15 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.web.reactive.function.client.WebClient;
 import java.math.BigDecimal;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
 class TripServiceApplicationTests {
-
-
-
 
 }
