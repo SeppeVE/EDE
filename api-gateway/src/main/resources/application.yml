@@ -46,6 +46,13 @@ spring:
             - Method=PUT
           filters:
             - SetPath=/api/customer/{id}
+        - id: customer-service-delete
+          uri: http://${CUSTOMER_SERVICE_BASEURL:localhost:8081}
+          predicates:
+            - Path=/customer/delete/{id}
+            - Method=DELETE
+          filters:
+            - SetPath=/api/customer/{id}
         - id: taxi-service-get
           uri: http://${TAXI_SERVICE_BASEURL:localhost:8082}
           predicates:
