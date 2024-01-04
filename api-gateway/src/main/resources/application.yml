@@ -49,7 +49,7 @@ spring:
         - id: customer-service-delete
           uri: http://${CUSTOMER_SERVICE_BASEURL:localhost:8081}
           predicates:
-            - Path=/delete/customer/{id}
+            - Path=/customer/delete/{id}
             - Method=DELETE
           filters:
             - SetPath=/api/customer/{id}
