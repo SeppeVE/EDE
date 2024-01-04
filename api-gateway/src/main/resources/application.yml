@@ -28,7 +28,7 @@ spring:
         - id: customer-service
           uri: http://${CUSTOMER_SERVICE_BASEURL:localhost:8081}
           predicates:
-            - Path=/customer
+            - Path=/customers
             - Method=GET
           filters:
             - SetPath=/api/customer
@@ -49,12 +49,10 @@ spring:
         - id: customer-service-delete
           uri: http://${CUSTOMER_SERVICE_BASEURL:localhost:8081}
           predicates:
-            - Path=/customer/delete/{id}
+            - Path=/delete/customer/{id}
             - Method=DELETE
           filters:
             - SetPath=/api/customer/{id}
-
-
         - id: taxi-service-get
           uri: http://${TAXI_SERVICE_BASEURL:localhost:8082}
           predicates:
@@ -69,8 +67,6 @@ spring:
             - Method=POST
           filters:
             - SetPath=/api/taxi
-
-
         - id: trip-service
           uri: http://${TRIP_SERVICE_BASEURL:localhost:8083}
           predicates:
