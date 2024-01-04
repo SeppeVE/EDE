@@ -30,14 +30,14 @@ public class CustomerController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void updateCustomer(@PathVariable String id, @RequestBody CustomerRequest customerRequest) {
-        customerService.updateCustomer(id, customerRequest);
+    public void updateCustomer(@PathVariable("id") String customerId, @RequestBody CustomerRequest customerRequest) {
+        customerService.updateCustomer(customerId, customerRequest);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteCustomer(@PathVariable String id) {
-        customerService.deleteCustomer(id);
+    public void deleteCustomer(@PathVariable("id") String customerId) {
+        customerService.deleteCustomer(customerId);
     }
 
 }
