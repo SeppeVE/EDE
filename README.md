@@ -42,6 +42,11 @@ Out of all these endpoints, the only one accesible withouth authorization is GET
 ![Put_customer_1](https://github.com/SeppeVE/EDE/assets/91118345/1e786298-8fe5-4104-9535-6c0d60754797)
 ![Put_customer_2](https://github.com/SeppeVE/EDE/assets/91118345/1af572e5-c81f-40cc-b401-92f68d67f008)
 
+### Delete Customer
+![Delete_customer_1](https://github.com/SeppeVE/EDE/assets/91118345/6bcee1f6-ce22-4d4b-ba84-d3a924b89485)
+![Delete_customer_2](https://github.com/SeppeVE/EDE/assets/91118345/54888ff9-02f5-4ebc-b72e-31156146174f)
+Note: In this case it is /delete/customer, for some reason that I haven't been able to find it only works like this and not /customer/delete.
+
 ### Get Taxis
 ![Get_Taxis](https://github.com/SeppeVE/EDE/assets/91118345/544ea6b1-26dc-4a7b-96e8-d3b5a16a40bf)
 
@@ -59,6 +64,7 @@ In order to access all of this over the internet it has to be hosted of course. 
 * [Get Customers (only one without auth)](https://api-gateway-seppeve.cloud.okteto.net/customers)
 * [Post Customer](https://api-gateway-seppeve.cloud.okteto.net/customer/post)
 * [Put Customer](https://api-gateway-seppeve.cloud.okteto.net/cutomer/put/id)
+* [Delete Customer](https://api-gateway-seppeve.cloud.okteto.net/delete/customer/id)
 * [Get Taxis](https://api-gateway-seppeve.cloud.okteto.net/taxis)
 * [Post Taxi](https://api-gateway-seppeve.cloud.okteto.net/taxi/post)
 * [Get Trips](https://api-gateway-seppeve.cloud.okteto.net/trips)
