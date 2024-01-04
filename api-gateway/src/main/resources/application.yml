@@ -53,8 +53,6 @@ spring:
             - Method=DELETE
           filters:
             - SetPath=/api/customer/{id}
-
-
         - id: taxi-service-get
           uri: http://${TAXI_SERVICE_BASEURL:localhost:8082}
           predicates:
@@ -69,8 +67,6 @@ spring:
             - Method=POST
           filters:
             - SetPath=/api/taxi
-
-
         - id: trip-service
           uri: http://${TRIP_SERVICE_BASEURL:localhost:8083}
           predicates:
