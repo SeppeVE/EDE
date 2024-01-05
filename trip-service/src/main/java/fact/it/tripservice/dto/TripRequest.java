@@ -11,7 +11,6 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class TripRequest {
     private double lengthInKm;
-    private BigDecimal price;
     private String licencePlate;
     private String customerNr;
 }

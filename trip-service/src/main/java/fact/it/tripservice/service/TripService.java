@@ -60,50 +60,71 @@ public class TripService {
 
 
     public boolean callTrip(TripRequest tripRequest) {
-        Trip trip = new Trip();
-        trip.setTripNr(UUID.randomUUID().toString());
-
-        String licencePlate = tripRequest.getLicencePlate();
-
-        TaxiResponse[] taxiAr = webClient.get()
-                .uri("http://" + taxiServiceBaseUrl +"/api/taxi", uriBuilder -> uriBuilder.queryParam("licencePlate", licencePlate)
-                        .build())
-                .retrieve()
-                .bodyToMono(TaxiResponse[].class)
-                .block();
-
-        String customerNr = tripRequest.getCustomerNr();
-
-        CustomerResponse[] customerAr = webClient.get()
-                .uri("http://"+ customerServiceBaseUrl +"/api/customer", uriBuilder -> uriBuilder.queryParam("customerNr", customerNr)
-                        .build())
-                .retrieve()
-                .bodyToMono(CustomerResponse[].class)
-                .block();
-
-        boolean isAvailable = Arrays.stream(taxiAr).allMatch(TaxiResponse::isAvailable);
-
-        if (isAvailable){
-            Arrays.stream(taxiAr)
-                    .filter(e -> e.getLicencePlate().equals(tripRequest.getLicencePlate()))
-                    .findFirst().ifPresent(taxi -> trip.setPricePerKm(taxi.getPricePerKm()));
-            CustomerResponse customer = Arrays.stream(customerAr)
-                    .filter(s -> s.getCustomerNr().equals(tripRequest.getCustomerNr()))
-                    .findFirst()
-                    .orElse(null);
-            if (customer != null) {
-                trip.setFirstNameCustomer(customer.getFirstName());
-                trip.setLastNameCustomer(customer.getLastName());
-            }
-
-            tripRepository.save(trip);
-            return true;
-
-        } else {
-
+        // Validate input parameters
+        if (tripRequest.getLengthInKm() <= 0 || tripRequest.getLicencePlate().isEmpty() || tripRequest.getCustomerNr().isEmpty()) {
+            // Handle invalid input parameters
             return false;
         }
 
+        Trip trip = new Trip();
+        trip.setTripNr(UUID.randomUUID().toString());
+
+        // Retrieve taxi information
+        TaxiResponse[] taxiAr = getTaxiInformation(tripRequest.getLicencePlate());
+
+        // Retrieve customer information
+        CustomerResponse[] customerAr = getCustomerInformation(tripRequest.getCustomerNr());
+
+        // Check taxi availability
+        boolean isAvailable = Arrays.stream(taxiAr).allMatch(TaxiResponse::isAvailable);
+
+        if (isAvailable) {
+            setTripDetails(trip, tripRequest, taxiAr, customerAr);
+            tripRepository.save(trip);
+            return true;
+        } else {
+            // Handle unavailable taxis
+            return false;
+        }
+    }
+
+    private TaxiResponse[] getTaxiInformation(String licencePlate) {
+        return webClient.get()
+                .uri("http://" + taxiServiceBaseUrl + "/api/taxi", uriBuilder ->
+                        uriBuilder.queryParam("licencePlate", licencePlate)
+                                .build())
+                .retrieve()
+                .bodyToMono(TaxiResponse[].class)
+                .block();
+    }
+
+    private CustomerResponse[] getCustomerInformation(String customerNr) {
+        return webClient.get()
+                .uri("http://" + customerServiceBaseUrl + "/api/customer", uriBuilder ->
+                        uriBuilder.queryParam("customerNr", customerNr)
+                                .build())
+                .retrieve()
+                .bodyToMono(CustomerResponse[].class)
+                .block();
+    }
+
+    private void setTripDetails(Trip trip, TripRequest tripRequest, TaxiResponse[] taxiAr, CustomerResponse[] customerAr) {
+        Arrays.stream(taxiAr)
+                .filter(e -> e.getLicencePlate().equals(tripRequest.getLicencePlate()))
+                .findFirst()
+                .ifPresent(taxi -> trip.setPricePerKm(taxi.getPricePerKm()));
+
+        CustomerResponse customer = Arrays.stream(customerAr)
+                .filter(s -> s.getCustomerNr().equals(tripRequest.getCustomerNr()))
+                .findFirst()
+                .orElse(null);
+
+        if (customer != null) {
+            trip.setFirstNameCustomer(customer.getFirstName());
+            trip.setLastNameCustomer(customer.getLastName());
+        }
+
+        trip.setLengthInKm(tripRequest.getLengthInKm());
     }
 
 
