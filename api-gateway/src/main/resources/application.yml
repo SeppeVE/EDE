@@ -74,3 +74,10 @@ spring:
             - Method=GET
           filters:
             - SetPath=/api/trip
+        - id: trip-service-post
+          uri: http://${TRIP_SERVICE_BASEURL:localhost:8083}
+          predicates:
+            - Path=/trip/post
+            - Method=POST
+          filters:
+            - SetPath=/api/trip

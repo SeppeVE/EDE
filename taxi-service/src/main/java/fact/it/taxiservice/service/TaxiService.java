@@ -78,11 +78,6 @@ public class TaxiService {
         return taxis.stream().map(this::mapToTaxiResponse).toList();
     }
 
-    public List<TaxiResponse> getAllTaxisByBrand(String brand){
-        List<Taxi> taxis = taxiRepository.findAllByBrand(brand);
-        return taxis.stream().map(this::mapToTaxiResponse).toList();
-    }
-
     private TaxiResponse mapToTaxiResponse(Taxi taxi){
         return TaxiResponse.builder()
                 .id(taxi.getId())
