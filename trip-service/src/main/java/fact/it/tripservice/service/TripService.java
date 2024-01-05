@@ -38,10 +38,6 @@ public class TripService {
         return trips.stream().map(this::mapToTripResponse).toList();
     }
 
-    public TripResponse getTripById(String tripId) {
-        Trip trip = tripRepository.findTripById(Long.valueOf(tripId));
-        return mapToTripResponse(trip);
-    }
 
     @PostConstruct
     public void loadData() {
@@ -110,15 +106,6 @@ public class TripService {
 
     }
 
-    public boolean deleteTrip(String tripId) {
-        Trip trip = tripRepository.findTripById(Long.valueOf(tripId));
-        if(trip != null) {
-            tripRepository.deleteById(trip.getId());
-            return true;
-        } else {
-            return false;
-        }
-    }
 
     private TripResponse mapToTripResponse(Trip trip) {
         return TripResponse.builder()

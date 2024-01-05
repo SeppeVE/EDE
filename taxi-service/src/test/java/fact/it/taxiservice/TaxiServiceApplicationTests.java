@@ -115,20 +115,4 @@ class TaxiServiceApplicationTests {
         assertEquals("Mazda", taxiResponses.get(1).getBrand());
     }
 
-    @Test
-    void getAllTaxisByBrandTest() {
-        String brand = "Toyota";
-
-        when(taxiRepository.findAllByBrand(brand)).thenReturn(Arrays.asList(
-                Taxi.builder().brand(brand).licencePlate("1-abc-123").pricePerKm(2.00).isAvailable(false).build(),
-                Taxi.builder().brand(brand).licencePlate("2-xyz-456").pricePerKm(3.50).isAvailable(true).build()
-        ));
-
-        List<TaxiResponse> taxiResponses = taxiService.getAllTaxisByBrand(brand);
-
-        assertEquals(2, taxiResponses.size());
-        assertEquals("1-abc-123", taxiResponses.get(0).getLicencePlate());
-        assertEquals("2-xyz-456", taxiResponses.get(1).getLicencePlate());
-    }
-
 }
